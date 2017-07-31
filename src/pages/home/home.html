@@ -1,0 +1,32 @@
+<ion-header class="homeNavBar">
+    <ion-segment [(ngModel)]="segmentSelect" (ionChange)="onSegmentChanged($event)" color="light" style="padding: 3px">
+      <ion-segment-button *ngFor="let tab of tabs" (click)="selectTab(tab)" [value]="tab">{{tab}}</ion-segment-button>
+      <div id="slide" class="slide"></div>
+    </ion-segment>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides #pageSlider (ionSlideWillChange)="changeWillSlide($event)">
+    <ion-slide *ngFor="let tab of tabs">
+      <ion-list>
+        <ion-card *ngFor="let post of posts">
+          <img *ngIf="post.thumbnail_images.full.url" [src]="post.thumbnail_images.full.url"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{post.title}}
+            </ion-card-title>
+            <div [innerHTML]="post.content.substring(0,60)"></div>
+            <ion-item>
+              <button ion-button full color="primary" round (click)="goToPage(post)">Leia tudo...</button>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
