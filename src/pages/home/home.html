@@ -6,8 +6,8 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-slides #pageSlider (ionSlideWillChange)="changeWillSlide($event)">
+<ion-content class="no-scroll" padding>
+  <ion-slides style="height: auto" (ionSlideWillChange)="changeWillSlide($event)">
     <ion-slide *ngFor="let tab of tabs">
       <ion-list>
         <ion-card *ngFor="let post of posts">
@@ -25,7 +25,6 @@
       </ion-list>
     </ion-slide>
   </ion-slides>
-
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>

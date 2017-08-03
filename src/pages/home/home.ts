@@ -24,6 +24,7 @@ export class HomePage {
   economia = 1;
   esportes = 1;
   segmentSelect:any = 'agora';
+  
   constructor(public navCtrl: NavController, private newsProvider: NewsProvider) {
     this.getPosts(this.now++,()=>{});
   }
